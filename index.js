@@ -1,14 +1,16 @@
 const express = require("express");
-const { createServer } = require("unblocker");
+const unblocker = require("node-unblocker");
 
 const app = express();
 
 app.use(
-  createServer({
-    prefix: "/proxy/", // Örneğin: /proxy/https://www.youtube.com
+  "/proxy",
+  unblocker({
+    requestMiddleware: [],
+    responseMiddleware: [],
   })
 );
 
-app.listen(8080, () => {
-  console.log("Proxy sunucusu 8080 portunda çalışıyor");
+app.listen(process.env.PORT || 8080, () => {
+  console.log("Proxy server is running.");
 });
