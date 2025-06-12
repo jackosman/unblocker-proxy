@@ -1,16 +1,16 @@
 const express = require("express");
-const unblocker = require("node-unblocker");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-app.use(
-  "/proxy",
-  unblocker({
-    requestMiddleware: [],
-    responseMiddleware: [],
-  })
-);
+app.use("/youtube", createProxyMiddleware({
+  target: "https://www.youtube.com",
+  changeOrigin: true,
+  pathRewrite: {
+    "^/youtube": "", // /youtube yerine direkt kök adresi kullan
+  },
+}));
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log("Proxy server is running.");
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Proxy aktif: http://localhost:3000/youtube");
 });
