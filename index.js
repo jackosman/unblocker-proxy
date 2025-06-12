@@ -1,15 +1,14 @@
-const express = require('express');
-const { createUnblocker } = require('unblocker');
+const express = require("express");
+const { createServer } = require("unblocker");
 
 const app = express();
 
-// Proxy için '/proxy/' öneki kullanılacak
-app.use(createUnblocker({
-  prefix: '/proxy/',
-}));
+app.use(
+  createServer({
+    prefix: "/proxy/", // Örneğin: /proxy/https://www.youtube.com
+  })
+);
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Proxy sunucusu çalışıyor: http://localhost:${PORT}/proxy/`);
-}).on('upgrade', createUnblocker().onUpgrade);
+app.listen(8080, () => {
+  console.log("Proxy sunucusu 8080 portunda çalışıyor");
+});

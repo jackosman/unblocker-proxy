@@ -1,16 +1,12 @@
 {
-  "name": "unblocker-proxy",
+  "name": "youtube-proxy",
   "version": "1.0.0",
-  "description": "Node.js ile YouTube gibi sitelere erişim için proxy",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "jackosman",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "unblocker": "^2.0.0"
+    "unblocker": "^2.6.3"
   }
 }
